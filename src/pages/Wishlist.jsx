@@ -2,19 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useWishlist } from '../context/WishlistContext';
-import { useCart } from '../context/CartContext';
+
 import { useAuth } from '../context/AuthContext';
 import Button from '../components/Button';
 import ProductCard from '../components/ProductCard';
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, clearWishlist } = useWishlist();
-  const { addToCart } = useCart();
+
   const { user } = useAuth();
 
-  const handleAddToCart = (product) => {
-    addToCart(product, 1);
-  };
+
 
   const handleRemoveFromWishlist = (productId) => {
     removeFromWishlist(productId);
