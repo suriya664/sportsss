@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -63,7 +63,16 @@ const initializeAdmin = () => {
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isDashboard = location.pathname.includes('dashboard');
+
+  // Handle GitHub Pages 404.html redirect
+  useEffect(() => {
+    const path = location.search.match(/\/?\/(.+)/);
+    if (path) {
+      navigate(path[1].replace(/~and~/g, '&').replace(/\?$/, ''), { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
             <div className="min-h-screen flex flex-col">
@@ -139,7 +148,7 @@ function App() {
     <AuthProvider>
       <WishlistProvider>
         <CartProvider>
-          <Router>
+          <Router basename="/sportsss">
             <AppContent />
           </Router>
         </CartProvider>
