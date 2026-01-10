@@ -1,0 +1,150 @@
+===================== MASTER CURSOR WEBSITE PROMPT v1.0 =====================
+
+== INSTRUCTIONS FOR CURSOR AI ==
+Follow these rules exactly. Do not skip, simplify, or leave placeholders. Generate a fully functional, responsive website with complete navigation, content, and working pages. Apply all coding, UI, animation, and QA rules listed below.
+
+1. MUST-HAVE RULES
+- NO placeholders. Every link, page, button, nav item, and content section must work.
+- Include full content for all pages.
+- Fully responsive on all devices.
+- Accessibility compliant (WCAG 2.1 AA).
+- SEO optimized (H1 per page, meta tags, logical heading structure).
+
+2. Coding Rules
+- Use ReactJS/NextJS + TypeScript + TailwindCSS only.
+- Functional components only; use arrow functions with descriptive names.
+- Event handlers prefixed with handle* (e.g., handleClick).
+- Avoid CSS files; use Tailwind classes only.
+- Use const for variables/functions.
+- Use interfaces, no any, no enums, no type assertions.
+- Accessibility: all buttons/links must have aria-label, tabIndex=0, onClick, onKeyDown.
+- Use declarative JSX; keep code minimal and readable.
+- Follow DRY principle; avoid repetition.
+- Use early returns when possible.
+
+3. UI / Styling Rules
+- Mobile-first approach.
+- Tailwind classes only; use class directives, avoid ternary operators.
+- Maintain consistent font hierarchy and spacing.
+- Buttons: hover/focus/active states with color/shadow/scale changes.
+- Cards: glow borders, lift, shadow effects.
+- CTA buttons: actionable text only (Get Started, Learn More).
+- Images: optimized, cropped, lazy-loaded, scaled correctly (105% zoom effect).
+- Social icons: official brand colors, hover effects, correct links.
+- Footer and navigation consistent across all pages.
+
+4. Navigation & Footer
+MOBILE MENU REQUIREMENTS:
+- Appears below 1024px
+- Hamburger icon right-aligned
+- Slide-in from right (300ms)
+- Dark backdrop (#000, 50% opacity)
+- Tap outside closes menu
+- Desktop navigation visible on large screens
+FOOTER:
+- Mobile: 1 column
+- Desktop: 4 columns (Logo + brand, company links, services, contact)
+- Bottom footer: copyright, privacy policy, terms of service, back-to-top button
+
+5. Animations & Interactive Features
+- Smooth scroll behavior (no layout shifts)
+- Buttons: lift/shadow/color shift on hover
+- Images: scale 105%, 0.7s smooth transition
+- Cards: glow border, lift, shadow enhancement
+- Mobile menu: fade backdrop 300ms, slide-in panel easing
+- Page loading: fade-in content, slide-up hero/banner
+
+6. Responsive Layouts
+- Breakpoints:
+  - Mobile: <768px
+  - Tablet: 768px–1023px
+  - Desktop: ≥1024px
+- Mobile = 1-column layouts
+- Desktop = multi-column layouts
+- Maintain alignment, spacing, padding consistency
+
+7. Browser Support & Performance
+- Chrome, Firefox, Safari, Edge
+- Touch & mobile friendly
+- Optimized compressed images
+- Lazy-load non-critical media
+- Efficient code bundling
+
+8. Forms & Validation
+- Real-time validation with helpful error messages
+- Password visibility toggle
+- Success/error state notifications
+- Input sanitization and security (XSS, CSRF)
+
+9. QA CHECKLIST
+1. Add favicon; verify on all pages
+2. Logo clickable → homepage
+3. Equal spacing between menu items
+4. No extra empty space below navbar or before headings
+5. Navbar consistent on all pages
+6. Highlight active page in menu
+7. Navbar responsive on all screen sizes
+8. Center-align subheadings (h2, h3)
+9. Consistent font hierarchy (h1 > h2 > h3 > p)
+10. Avoid inconsistent capitalization or spacing
+11. Proper line height and text contrast
+12. CTA cards aligned and equal height
+13. Review/testimonial cards aligned consistently
+14. Button colors contrast background
+15. Apply hover effects on all buttons
+16. Use actionable CTA text
+17. Use high-quality, relevant images
+18. Images cropped, not stretched/pixelated
+19. Match image card proportions with text/content blocks
+20. Optimize images (compression + lazy-load)
+21. Use licensed/free image sources (Unsplash, Pexels)
+22. Use original social media brand icons
+23. Hover effects on social icons
+24. Official brand colors for social icons
+25. Social icons link correctly
+26. Footer: About, Quick Links, Contact, Copyright
+27. Footer layout consistent on all pages
+28. External footer links open in new tab
+29. Footer social icons aligned and visible
+30. International phone numbers prefixed with “+”
+31. Contact details clickable
+32. Contact forms validated (AJAX, success/error)
+33. Consistent padding and margins
+34. Sufficient color contrast between background/text/buttons
+35. Consistent border-radius and shadow effects
+36. Verify hover, focus, active states for all buttons/links
+37. Prevent content overlap or spacing issues
+38. Smooth scroll without layout shifts
+39. All links/buttons lead to correct pages
+40. Entire site responsive (mobile/tablet/desktop)
+41. Justify content and align items properly
+42. Standard readable font sizes across pages
+43. Use images to visually balance pages
+44. Standard font weights: h1=700, h2=600, h3=300
+
+10. Output Requirements
+/pages (home, about, services, pricing, contact, blog, privacy, terms)
+/components (navbar, footer, hero, cards, buttons, mobile-menu)
+/styles/global.css
+/animations/scroll.js
+
+== BRAND DATA ==
+Website Name: [ENTER WEBSITE NAME]
+Tagline: [ENTER TAGLINE]
+Industry: [ENTER INDUSTRY]
+Target Audience: [PRIMARY AUDIENCE 1, 2, 3]
+Main Colors + Gradients: [HEX codes]
+Typography:
+  - Headings font: [NAME, weight]
+  - Body font: [NAME, weight]
+Logo: [Icon + Typography + Style]
+Favicon: [Shape + Icon]
+Hero images, CTA images, testimonials, team images: [Provide links]
+Social media links: [Provide links]
+
+== FINAL INSTRUCTIONS TO MODEL ==
+- Follow every instruction exactly
+- Do not skip, simplify, or shorten content
+- Do not use placeholders
+- Write full code for all pages, components, and styles
+- Ensure full responsiveness, accessibility, animations, and QA rules

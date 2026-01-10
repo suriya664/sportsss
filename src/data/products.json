@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "Velocity Pro Running Shoes",
+    "category": "shoes",
+    "price": 129.99,
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&auto=format",
+    "description": "High-performance running shoes with advanced cushioning technology. Perfect for marathon runners and daily joggers.",
+    "brand": "SpeedMax",
+    "rating": 4.8,
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Elite Basketball Sneakers",
+    "category": "shoes",
+    "price": 149.99,
+    "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&h=500&fit=crop&auto=format",
+    "description": "Professional-grade basketball shoes with superior ankle support and responsive cushioning.",
+    "brand": "JumpForce",
+    "rating": 4.9,
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Trail Blazer Hiking Boots",
+    "category": "shoes",
+    "price": 179.99,
+    "image": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=500&h=500&fit=crop&auto=format",
+    "description": "Durable hiking boots designed for rugged terrain. Waterproof and breathable.",
+    "brand": "MountainGear",
+    "rating": 4.7,
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "name": "Sprint Training Shoes",
+    "category": "shoes",
+    "price": 99.99,
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&h=500&fit=crop&auto=format",
+    "description": "Lightweight training shoes optimized for speed and agility workouts.",
+    "brand": "SpeedMax",
+    "rating": 4.6,
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "name": "Pro Training Jersey",
+    "category": "apparel",
+    "price": 49.99,
+    "image": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=500&fit=crop&auto=format",
+    "description": "Moisture-wicking training jersey with breathable mesh panels. Perfect for intense workouts.",
+    "brand": "AthleteX",
+    "rating": 4.5,
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "name": "Elite Compression Shorts",
+    "category": "apparel",
+    "price": 39.99,
+    "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500&h=500&fit=crop&auto=format",
+    "description": "High-performance compression shorts for enhanced muscle support and recovery.",
+    "brand": "AthleteX",
+    "rating": 4.7,
+    "inStock": true
+  },
+  {
+    "id": 7,
+    "name": "Training Tank Top",
+    "category": "apparel",
+    "price": 34.99,
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=500&fit=crop&auto=format",
+    "description": "Lightweight tank top with UV protection. Ideal for outdoor training sessions.",
+    "brand": "FitPro",
+    "rating": 4.4,
+    "inStock": true
+  },
+  {
+    "id": 8,
+    "name": "Pro Athletic Hoodie",
+    "category": "apparel",
+    "price": 69.99,
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop&auto=format",
+    "description": "Premium athletic hoodie with zippered pockets and adjustable hood.",
+    "brand": "AthleteX",
+    "rating": 4.6,
+    "inStock": true
+  },
+  {
+    "id": 9,
+    "name": "Professional Soccer Ball",
+    "category": "balls",
+    "price": 45.99,
+    "image": "https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop&auto=format",
+    "description": "FIFA-approved soccer ball with premium leather construction. Used by professional teams.",
+    "brand": "KickPro",
+    "rating": 4.9,
+    "inStock": true
+  },
+  {
+    "id": 10,
+    "name": "Elite Basketball",
+    "category": "balls",
+    "price": 39.99,
+    "image": "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=500&h=500&fit=crop&auto=format",
+    "description": "Official size and weight basketball with superior grip and durability.",
+    "brand": "JumpForce",
+    "rating": 4.8,
+    "inStock": true
+  },
+  {
+    "id": 11,
+    "name": "Pro Volleyball",
+    "category": "balls",
+    "price": 42.99,
+    "image": "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=500&h=500&fit=crop&auto=format",
+    "description": "Competition-grade volleyball with microfiber composite cover for optimal touch.",
+    "brand": "SpikePro",
+    "rating": 4.7,
+    "inStock": true
+  },
+  {
+    "id": 12,
+    "name": "Training Tennis Balls (12 pack)",
+    "category": "balls",
+    "price": 24.99,
+    "image": "https://nwscdn.com/media/wysiwyg/Tennis/Training_Tennis_Balls_High_Vis_Felt_Exterior.jpg",
+    "description": "High-quality tennis balls with consistent bounce. Perfect for practice sessions.",
+    "brand": "ServePro",
+    "rating": 4.5,
+    "inStock": true
+  },
+  {
+    "id": 13,
+    "name": "Adjustable Dumbbells Set",
+    "category": "equipment",
+    "price": 299.99,
+    "image": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&h=500&fit=crop&auto=format",
+    "description": "Space-saving adjustable dumbbells from 5-50 lbs. Perfect for home gyms.",
+    "brand": "PowerLift",
+    "rating": 4.8,
+    "inStock": true
+  },
+  {
+    "id": 14,
+    "name": "Yoga Mat Pro",
+    "category": "equipment",
+    "price": 49.99,
+    "image": "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500&h=500&fit=crop&auto=format",
+    "description": "Premium non-slip yoga mat with extra cushioning. Eco-friendly materials.",
+    "brand": "ZenFit",
+    "rating": 4.6,
+    "inStock": true
+  },
+  {
+    "id": 15,
+    "name": "Resistance Bands Set",
+    "category": "equipment",
+    "price": 29.99,
+    "image": "https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=500&h=500&fit=crop&auto=format",
+    "description": "Complete resistance band set with 5 different resistance levels. Includes door anchor.",
+    "brand": "FlexBand",
+    "rating": 4.7,
+    "inStock": true
+  },
+  {
+    "id": 16,
+    "name": "Jump Rope Pro",
+    "category": "equipment",
+    "price": 19.99,
+    "image": "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=500&h=500&fit=crop&auto=format",
+    "description": "Professional speed jump rope with ball bearings for smooth rotation.",
+    "brand": "SpeedMax",
+    "rating": 4.5,
+    "inStock": true
+  },
+  {
+    "id": 17,
+    "name": "Training Gloves",
+    "category": "equipment",
+    "price": 24.99,
+    "image": "https://images.unsplash.com/photo-1576678927484-cc907957088c?w=500&h=500&fit=crop&auto=format",
+    "description": "Premium weightlifting gloves with reinforced palms and wrist support.",
+    "brand": "PowerLift",
+    "rating": 4.4,
+    "inStock": true
+  },
+  {
+    "id": 18,
+    "name": "Foam Roller",
+    "category": "equipment",
+    "price": 34.99,
+    "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=500&fit=crop&auto=format",
+    "description": "High-density foam roller for muscle recovery and flexibility training.",
+    "brand": "RecoveryPro",
+    "rating": 4.6,
+    "inStock": true
+  },
+  {
+    "id": 19,
+    "name": "Athletic Backpack",
+    "category": "equipment",
+    "price": 59.99,
+    "image": "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500&h=500&fit=crop&auto=format",
+    "description": "Spacious athletic backpack with separate shoe compartment and water bottle holders.",
+    "brand": "GearPro",
+    "rating": 4.5,
+    "inStock": true
+  },
+  {
+    "id": 20,
+    "name": "Sports Water Bottle",
+    "category": "equipment",
+    "price": 14.99,
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&h=500&fit=crop&auto=format",
+    "description": "Insulated stainless steel water bottle keeps drinks cold for 24 hours.",
+    "brand": "HydratePro",
+    "rating": 4.7,
+    "inStock": true
+  }
+]

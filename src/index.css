@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700;900&display=swap');
+@import './styles/responsive.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  body {
+    @apply m-0 font-lato antialiased bg-mountain-gray text-forest-green;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-nunito font-extrabold;
+  }
+}
+
+@layer components {
+  .mountain-texture {
+    background-image: 
+      linear-gradient(135deg, rgba(30, 71, 42, 0.1) 0%, transparent 50%),
+      linear-gradient(45deg, rgba(139, 90, 43, 0.1) 0%, transparent 50%);
+  }
+
+  .nature-divider {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(139, 90, 43, 0.3) 20%,
+      rgba(139, 90, 43, 0.3) 80%,
+      transparent
+    );
+    height: 2px;
+  }
+
+  .glossy-card {
+    @apply bg-white shadow-lg;
+    box-shadow: 0 10px 30px rgba(30, 71, 42, 0.15);
+    border-radius: 8px;
+  }
+
+  .badge-shape {
+    @apply px-3 py-1 rounded-full;
+    background: linear-gradient(135deg, #FF8A34, #FF6B1A);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+  }
+
+  .wood-texture {
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        rgba(139, 90, 43, 0.1) 0px,
+        rgba(139, 90, 43, 0.1) 1px,
+        transparent 1px,
+        transparent 20px
+      );
+  }
+}
+
+@layer utilities {
+  .text-shadow-nature {
+    text-shadow: 2px 2px 4px rgba(30, 71, 42, 0.3);
+  }
+
+  .sunset-gradient {
+    background: linear-gradient(135deg, #FF8A34, #FF6B1A);
+  }
+}

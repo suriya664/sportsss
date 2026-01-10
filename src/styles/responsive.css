@@ -1,0 +1,46 @@
+/* Additional responsive utilities and media queries */
+
+/* Mobile-first breakpoints */
+@media (max-width: 640px) {
+  /* Mobile-specific styles */
+  .glossy-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet-specific styles */
+}
+
+@media (min-width: 1025px) {
+  /* Desktop-specific styles */
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Retina display optimizations */
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here */
+}
+
