@@ -27,12 +27,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Add .nojekyll file
-        run: touch build/.nojekyll
+      - name: Ensure .nojekyll exists
+        run: |
+          touch build/.nojekyll
+          ls -la build/.nojekyll
+          echo ".nojekyll file created successfully"
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
           branch: gh-pages
           clean: true
+          git-config-name: github-actions
+          git-config-email: github-actions[bot]@users.noreply.github.com
