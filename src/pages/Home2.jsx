@@ -290,21 +290,21 @@ const Home2 = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-mountain-gray glossy-card p-6 sm:p-8"
+                className="bg-mountain-gray glossy-card p-6 sm:p-8 rounded-lg shadow-md h-full flex flex-col"
               >
-                <div className="flex mb-4">
+                <div className="flex mb-4 flex-shrink-0">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-xl">⭐</span>
                   ))}
                 </div>
-                <p className="font-lato text-earth-brown text-sm sm:text-base mb-4 italic leading-relaxed">
+                <p className="font-lato text-earth-brown text-sm sm:text-base mb-6 italic leading-relaxed flex-grow">
                   "{testimonial.quote}"
                 </p>
-                <div className="border-t border-mountain-gray pt-4">
-                  <p className="font-nunito font-extrabold text-forest-green text-sm sm:text-base">
+                <div className="border-t border-gray-300 pt-4 mt-auto">
+                  <p className="font-nunito font-extrabold text-forest-green text-base sm:text-lg mb-1">
                     {testimonial.name}
                   </p>
-                  <p className="font-lato text-earth-brown text-xs sm:text-sm">
+                  <p className="font-lato text-earth-brown text-sm sm:text-base">
                     {testimonial.role}
                   </p>
                 </div>

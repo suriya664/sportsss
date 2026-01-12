@@ -82,7 +82,8 @@ const StaffDashboard = () => {
       <motion.aside
         initial={{ x: -300 }}
         animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -300) }}
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-blue-600 to-blue-700 text-white transform transition-transform duration-300 ease-in-out lg:translate-x-0 shadow-2xl`}
+        transition={{ duration: 0.15, ease: 'easeInOut' }}
+        className={`fixed lg:static inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-blue-600 to-blue-700 text-white transform transition-transform duration-150 ease-in-out lg:translate-x-0 shadow-2xl`}
       >
         <div className="flex flex-col h-full">
           {/* Enhanced Logo */}
@@ -94,9 +95,9 @@ const StaffDashboard = () => {
                 </div>
                 <div>
                   <h2 className="font-nunito font-extrabold text-xl text-white">
-                    STAFF PANEL
+                    SPORTSEQUIP
                   </h2>
-                  <p className="font-lato text-xs text-blue-200">Operations Center</p>
+                  <p className="font-lato text-xs text-blue-200">Staff Panel</p>
                 </div>
               </div>
               <button
