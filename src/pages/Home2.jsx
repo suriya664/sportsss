@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ProductCard from '../components/ProductCard';
@@ -7,24 +7,6 @@ import productsData from '../data/products.json';
 
 const Home2 = () => {
   const featuredProducts = productsData.slice(0, 6);
-  const [imageErrors, setImageErrors] = useState({});
-
-  const handleImageError = (categoryName) => {
-    setImageErrors((prev) => ({ ...prev, [categoryName]: true }));
-  };
-
-  const getCategoryImage = (category) => {
-    if (imageErrors[category.name]) {
-      const fallbacks = {
-        'Balls': 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop&auto=format',
-        'Shoes': 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&auto=format',
-        'Apparel': 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=500&fit=crop&auto=format',
-        'Equipment': 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=500&fit=crop&auto=format',
-      };
-      return fallbacks[category.name] || category.image;
-    }
-    return category.image;
-  };
 
   return (
     <div className="min-h-screen">
@@ -64,12 +46,12 @@ const Home2 = () => {
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link to="/shop">
-                  <Button variant="secondary" size="xl" className="w-full sm:w-auto">
+                  <Button variant="secondary" size="xl" className="w-full sm:w-auto !text-white">
                     Explore Collection
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button variant="outline" size="xl" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-forest-green">
+                  <Button variant="outline" size="xl" className="w-full sm:w-auto !border-2 !border-white !text-white hover:!bg-white hover:!text-forest-green">
                     Get Expert Advice
                   </Button>
                 </Link>
@@ -423,12 +405,12 @@ const Home2 = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/shop">
-                <Button variant="secondary" size="xl" className="shadow-2xl">
+                <Button variant="secondary" size="xl" className="shadow-2xl !text-white">
                   Browse Collection
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" size="xl" className="border-2 border-white text-white hover:bg-white hover:text-forest-green shadow-xl">
+                <Button variant="outline" size="xl" className="!border-2 !border-white !text-white hover:!bg-white hover:!text-forest-green shadow-xl">
                   Contact Expert
                 </Button>
               </Link>
