@@ -29,10 +29,7 @@ const StaffDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    // Allow access without login - show dashboard with available data
 
     // Load orders
     const savedOrders = JSON.parse(localStorage.getItem('sportsOrders') || '[]');
@@ -156,14 +153,14 @@ const StaffDashboard = () => {
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg ring-2 ring-white ring-offset-2 ring-offset-blue-700">
                   <span className="text-white font-bold text-lg">
-                    {user?.name?.charAt(0).toUpperCase()}
+                    {user?.name?.charAt(0).toUpperCase() || 'S'}
                   </span>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-blue-700"></div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name}</p>
-                <p className="font-lato text-xs text-blue-200 truncate">{user?.email}</p>
+                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name || 'Staff'}</p>
+                <p className="font-lato text-xs text-blue-200 truncate">{user?.email || 'staff@sportsequip.com'}</p>
               </div>
             </div>
             <h3 className="font-lato font-semibold text-sm mb-3 text-blue-200">Quick Actions</h3>

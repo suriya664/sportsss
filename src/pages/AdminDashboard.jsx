@@ -36,15 +36,7 @@ const AdminDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-
-    if (!isAdmin()) {
-      navigate('/account');
-      return;
-    }
+    // Allow access without login - show dashboard with available data
 
     // Load data
     const allUsers = JSON.parse(localStorage.getItem('sportsUsers') || '[]');
@@ -156,14 +148,14 @@ const AdminDashboard = () => {
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sunset-orange to-orange-600 flex items-center justify-center shadow-lg ring-2 ring-white ring-offset-2 ring-offset-green-800">
                   <span className="text-white font-bold text-lg">
-                    {user?.name?.charAt(0).toUpperCase()}
+                    {user?.name?.charAt(0).toUpperCase() || 'A'}
                   </span>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-green-800"></div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name}</p>
-                <p className="font-lato text-xs text-green-200 truncate">{user?.email}</p>
+                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name || 'Admin'}</p>
+                <p className="font-lato text-xs text-green-200 truncate">{user?.email || 'admin@sportsequip.com'}</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -214,7 +206,7 @@ const AdminDashboard = () => {
                   {sidebarItems.find((item) => item.id === activeSection)?.label || 'Dashboard'}
                 </h1>
                 <p className="font-lato text-xs text-earth-brown hidden sm:block">
-                  Welcome back, {user?.name}
+                  {user ? `Welcome back, ${user.name}` : 'Admin Dashboard'}
                 </p>
               </div>
             </div>

@@ -28,14 +28,11 @@ const UserDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    // Allow access without login - show dashboard with available data
 
     // Load user orders
     const savedOrders = JSON.parse(localStorage.getItem('sportsOrders') || '[]');
-    const userOrders = savedOrders.filter((order) => order.email === user.email);
+    const userOrders = user ? savedOrders.filter((order) => order.email === user.email) : [];
     setOrders(userOrders);
 
     // Generate recent activities
@@ -140,14 +137,14 @@ const UserDashboard = () => {
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center shadow-lg ring-2 ring-white ring-offset-2 ring-offset-purple-700">
                   <span className="text-white font-bold text-lg">
-                    {user?.name?.charAt(0).toUpperCase()}
+                    {user?.name?.charAt(0).toUpperCase() || 'U'}
                   </span>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-purple-700"></div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name}</p>
-                <p className="font-lato text-xs text-purple-200 truncate">{user?.email}</p>
+                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name || 'User'}</p>
+                <p className="font-lato text-xs text-purple-200 truncate">{user?.email || 'user@example.com'}</p>
               </div>
             </div>
             <div className="space-y-2">
@@ -198,7 +195,7 @@ const UserDashboard = () => {
                   {sidebarItems.find((item) => item.id === activeSection)?.label || 'Dashboard'}
                 </h1>
                 <p className="font-lato text-xs text-earth-brown hidden sm:block">
-                  Welcome back, {user?.name}
+                  {user ? `Welcome back, ${user.name}` : 'User Dashboard'}
                 </p>
               </div>
             </div>
@@ -247,7 +244,7 @@ const UserDashboard = () => {
                     <div className="relative">
                       <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center shadow-xl ring-4 ring-purple-100">
                         <span className="text-white font-bold text-3xl">
-                          {user?.name?.charAt(0).toUpperCase()}
+                          {user?.name?.charAt(0).toUpperCase() || 'U'}
                         </span>
                       </div>
                       <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-400 rounded-full border-4 border-white flex items-center justify-center">
@@ -256,9 +253,9 @@ const UserDashboard = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-nunito font-extrabold text-2xl text-forest-green mb-2">
-                        {user?.name}
+                        {user?.name || 'User'}
                       </h3>
-                      <p className="font-lato text-earth-brown mb-1 text-lg">{user?.email}</p>
+                      <p className="font-lato text-earth-brown mb-1 text-lg">{user?.email || 'user@example.com'}</p>
                       <p className="font-lato text-sm text-earth-brown">
                         Member since {new Date().toLocaleDateString()}
                       </p>

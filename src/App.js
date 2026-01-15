@@ -65,6 +65,12 @@ function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
   const isDashboard = location.pathname.includes('dashboard');
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   // Handle GitHub Pages 404.html redirect
   useEffect(() => {
@@ -76,7 +82,7 @@ function AppContent() {
 
   return (
             <div className="min-h-screen flex flex-col">
-      {!isDashboard && <Navbar />}
+      {!isDashboard && !isAuthPage && <Navbar />}
               <main className="flex-grow">
                 <Routes>
                   <Route path="/" element={<Home />} />
@@ -107,34 +113,13 @@ function AppContent() {
                       </ProtectedRoute>
                     }
                   />
-          <Route
-            path="/admin-dashboard"
-            element={
-              <ProtectedRoute requireAdmin={true}>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/staff-dashboard"
-            element={
-              <ProtectedRoute>
-                <StaffDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/user-dashboard"
-            element={
-              <ProtectedRoute>
-                <UserDashboard />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/staff-dashboard" element={<StaffDashboard />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </main>
-      {!isDashboard && <Footer />}
+      {!isDashboard && !isAuthPage && <Footer />}
             </div>
   );
 }

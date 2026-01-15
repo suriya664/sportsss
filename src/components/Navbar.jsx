@@ -60,9 +60,9 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="flex items-center justify-between h-20 w-full relative">
             {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0 z-10">
+            <Link to="/" className="flex items-center flex-shrink-0 z-10 min-w-0">
               <motion.div
-                className="font-nunito font-extrabold text-xl sm:text-2xl md:text-3xl text-sunset-orange"
+                className="font-nunito font-extrabold text-lg sm:text-xl lg:text-xl xl:text-2xl text-sunset-orange truncate"
                 whileHover={{ scale: 1.1 }}
               >
                 SPORTSEQUIP
@@ -70,12 +70,12 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
+            <div className="hidden lg:flex items-center space-x-3 xl:space-x-6 flex-1 justify-center max-w-4xl mx-auto">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="font-nunito font-bold text-lg uppercase tracking-wider hover:text-sunset-orange transition-colors duration-300"
+                  className="font-nunito font-bold text-sm xl:text-lg uppercase tracking-wider hover:text-sunset-orange transition-colors duration-300 whitespace-nowrap"
                 >
                   {link.label}
                 </Link>
@@ -83,71 +83,52 @@ const Navbar = () => {
               {/* Dashboard Dropdown - Always Visible */}
               <div className="relative" ref={dashboardMenuRef}>
                 <motion.button
-                  onClick={() => {
-                    if (!user) {
-                      navigate('/login');
-                    } else {
-                      setIsDashboardMenuOpen(!isDashboardMenuOpen);
-                    }
-                  }}
-                  className="font-nunito font-bold text-lg uppercase tracking-wider hover:text-sunset-orange transition-colors duration-300 flex items-center space-x-1"
+                  onClick={() => setIsDashboardMenuOpen(!isDashboardMenuOpen)}
+                  className="font-nunito font-bold text-sm xl:text-lg uppercase tracking-wider hover:text-sunset-orange transition-colors duration-300 flex items-center space-x-1 whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                 >
                   <span>Dashboard</span>
-                  {user && (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={`h-4 w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-3 w-3 xl:h-4 xl:w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </motion.button>
 
-                {user && (
-                  <AnimatePresence>
-                    {isDashboardMenuOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 border border-mountain-gray"
+                <AnimatePresence>
+                  {isDashboardMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 w-56 bg-white rounded-md shadow-lg py-2 z-50 border border-mountain-gray"
+                    >
+                      <Link
+                        to="/admin-dashboard"
+                        onClick={() => setIsDashboardMenuOpen(false)}
+                        className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
                       >
-                        {isAdmin() && (
-                          <Link
-                            to="/admin-dashboard"
-                            onClick={() => setIsDashboardMenuOpen(false)}
-                            className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
-                          >
-                            Admin Dashboard
-                          </Link>
-                        )}
-                        <Link
-                          to="/staff-dashboard"
-                          onClick={() => setIsDashboardMenuOpen(false)}
-                          className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
-                        >
-                          Staff Dashboard
-                        </Link>
-                        <Link
-                          to="/user-dashboard"
-                          onClick={() => setIsDashboardMenuOpen(false)}
-                          className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
-                        >
-                          User Dashboard
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                )}
+                        Admin Dashboard
+                      </Link>
+                      <Link
+                        to="/user-dashboard"
+                        onClick={() => setIsDashboardMenuOpen(false)}
+                        className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
+                      >
+                        User Dashboard
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
 
             {/* Right Side Icons */}
-            <div className="flex items-center space-x-2 sm:space-x-4 ml-auto flex-shrink-0">
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3 ml-auto flex-shrink-0">
               {/* User Menu - Visible on all screen sizes, dropdown on right */}
               {user ? (
                 <div className="relative" ref={userMenuRef}>
@@ -170,7 +151,7 @@ const Navbar = () => {
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                       />
                     </svg>
-                    <span className="hidden md:block font-lato text-sm">
+                    <span className="hidden xl:block font-lato text-sm">
                       {user.name}
                     </span>
                   </motion.button>
@@ -215,10 +196,10 @@ const Navbar = () => {
                   </AnimatePresence>
                 </div>
               ) : (
-                <div className="hidden lg:flex items-center space-x-2">
+                <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
                   <Link to="/register">
                     <motion.button
-                      className="font-nunito font-bold text-xs sm:text-sm uppercase px-2 sm:px-4 py-1.5 sm:py-2 border-2 border-white hover:bg-white hover:text-forest-green transition-colors rounded-md whitespace-nowrap"
+                      className="font-nunito font-bold text-xs xl:text-sm uppercase px-2 xl:px-4 py-1.5 xl:py-2 border-2 border-white hover:bg-white hover:text-forest-green transition-colors rounded-md whitespace-nowrap"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -227,7 +208,7 @@ const Navbar = () => {
                   </Link>
                   <Link to="/login">
                     <motion.button
-                      className="font-nunito font-bold text-xs sm:text-sm uppercase px-2 sm:px-4 py-1.5 sm:py-2 bg-sunset-orange hover:bg-orange-600 transition-colors rounded-md whitespace-nowrap"
+                      className="font-nunito font-bold text-xs xl:text-sm uppercase px-2 xl:px-4 py-1.5 xl:py-2 bg-sunset-orange hover:bg-orange-600 transition-colors rounded-md whitespace-nowrap"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -305,7 +286,7 @@ const Navbar = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-2 hover:text-sunset-orange transition-colors flex-shrink-0"
+                className="lg:hidden p-2 hover:text-sunset-orange transition-colors flex-shrink-0 z-10"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -358,52 +339,31 @@ const Navbar = () => {
                        {/* Dashboard - Always Visible */}
                        <div className="space-y-2">
                          <button
-                           onClick={() => {
-                             if (!user) {
-                               navigate('/login');
-                               setIsMenuOpen(false);
-                             } else {
-                               setIsDashboardMenuOpen(!isDashboardMenuOpen);
-                             }
-                           }}
+                           onClick={() => setIsDashboardMenuOpen(!isDashboardMenuOpen)}
                            className="w-full font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center flex items-center justify-center space-x-1"
                          >
                            <span>Dashboard</span>
-                           {user && (
-                             <svg
-                               xmlns="http://www.w3.org/2000/svg"
-                               className={`h-4 w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
-                               fill="none"
-                               viewBox="0 0 24 24"
-                               stroke="currentColor"
-                             >
-                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                             </svg>
-                           )}
+                           <svg
+                             xmlns="http://www.w3.org/2000/svg"
+                             className={`h-4 w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
+                             fill="none"
+                             viewBox="0 0 24 24"
+                             stroke="currentColor"
+                           >
+                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                           </svg>
                          </button>
-                         {user && isDashboardMenuOpen && (
+                         {isDashboardMenuOpen && (
                            <div className="pl-4 space-y-2">
-                             {isAdmin() && (
-                               <Link
-                                 to="/admin-dashboard"
-                                 onClick={() => {
-                                   setIsMenuOpen(false);
-                                   setIsDashboardMenuOpen(false);
-                                 }}
-                                 className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
-                               >
-                                 Admin Dashboard
-                               </Link>
-                             )}
                              <Link
-                               to="/staff-dashboard"
+                               to="/admin-dashboard"
                                onClick={() => {
                                  setIsMenuOpen(false);
                                  setIsDashboardMenuOpen(false);
                                }}
                                className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
                              >
-                               Staff Dashboard
+                               Admin Dashboard
                              </Link>
                              <Link
                                to="/user-dashboard"
