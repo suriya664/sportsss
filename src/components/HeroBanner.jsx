@@ -50,12 +50,12 @@ const HeroBanner = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link to="/shop">
-            <Button variant="primary" size="xl">
+            <Button variant="primary" size="xl" className="!text-white">
               Explore Gear
             </Button>
           </Link>
           <Link to="/about">
-            <Button variant="outline" size="xl" className="bg-transparent border-white text-white hover:bg-white hover:text-forest-green">
+            <Button variant="outline" size="xl" className="!bg-transparent !border-2 !border-white !text-white hover:!bg-white hover:!text-forest-green">
               Our Story
             </Button>
           </Link>

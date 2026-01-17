@@ -326,12 +326,12 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/shop">
-                <Button variant="secondary" size="xl">
+                <Button variant="secondary" size="xl" className="!text-white">
                   Start Shopping
                 </Button>
               </Link>
               <Link to="/about">
-                <Button variant="outline" size="xl" className="border-2 border-white text-white hover:bg-white hover:text-sunset-orange">
+                <Button variant="outline" size="xl" className="!border-2 !border-white !text-white hover:!bg-white hover:!text-sunset-orange">
                   Learn More
                 </Button>
               </Link>

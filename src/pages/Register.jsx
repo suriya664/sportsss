@@ -52,8 +52,19 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-mountain-gray py-8 sm:py-12 px-4">
+    <div className="min-h-screen bg-mountain-gray py-12 px-4 sm:py-16">
       <div className="max-w-6xl mx-auto">
+        {/* Logo */}
+        <div className="text-center mb-8 sm:mb-12">
+          <Link to="/">
+            <motion.div
+              className="font-nunito font-extrabold text-3xl sm:text-4xl text-sunset-orange inline-block"
+              whileHover={{ scale: 1.1 }}
+            >
+              SPORTSEQUIP
+            </motion.div>
+          </Link>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Register Form */}
           <motion.div
