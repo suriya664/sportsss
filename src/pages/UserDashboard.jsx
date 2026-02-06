@@ -9,19 +9,22 @@ const UserDashboard = () => {
   const { wishlist } = useWishlist();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768 && window.innerWidth < 1024);
   const [orders, setOrders] = useState([]);
   const [recentActivities, setRecentActivities] = useState([]);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
-      if (window.innerWidth >= 1024) {
+      const width = window.innerWidth;
+      setIsDesktop(width >= 768);
+      setIsTablet(width >= 768 && width < 1024);
+      if (width >= 768) {
         setSidebarOpen(true);
       }
     };
     window.addEventListener('resize', handleResize);
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth >= 768) {
       setSidebarOpen(true);
     }
     return () => window.removeEventListener('resize', handleResize);
@@ -69,7 +72,9 @@ const UserDashboard = () => {
         initial={{ x: -288 }}
         animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -288) }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="fixed lg:relative inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-purple-700 to-indigo-800 text-white shadow-2xl flex flex-col h-full"
+        className={`fixed inset-y-0 left-0 z-40 bg-gradient-to-b from-purple-700 to-indigo-800 text-white shadow-2xl flex flex-col h-full ${
+          isDesktop ? (isTablet ? 'w-64' : 'w-72') : 'w-72'
+        }`}
       >
         <div className="flex flex-col h-full">
           {/* Enhanced Logo */}
@@ -88,7 +93,7 @@ const UserDashboard = () => {
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
-                className="lg:hidden text-white hover:text-purple-200 transition-colors"
+                className={`${isDesktop ? 'hidden' : 'block'} text-white hover:text-purple-200 transition-colors`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -181,7 +186,7 @@ const UserDashboard = () => {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className={`fixed inset-0 bg-black bg-opacity-50 z-30 ${isDesktop ? 'hidden' : 'block'}`}
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -194,7 +199,7 @@ const UserDashboard = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2 text-purple-600 hover:bg-mountain-gray rounded-lg transition-colors"
+                className={`${isDesktop ? 'hidden' : 'block'} p-2 text-purple-600 hover:bg-mountain-gray rounded-lg transition-colors`}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
