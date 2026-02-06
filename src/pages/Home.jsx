@@ -32,7 +32,7 @@ const Home = () => {
       <HeroBanner />
 
       {/* Featured Products Section */}
-      <section className="py-12 sm:py-20 bg-mountain-gray">
+      <section className="py-12 sm:py-16 bg-mountain-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -41,16 +41,16 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-forest-green mb-4">
+            <h2 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl text-forest-green mb-4">
               FEATURED <span className="text-sunset-orange">GEAR</span>
             </h2>
-            <p className="font-lato text-base sm:text-lg text-earth-brown max-w-2xl mx-auto px-4">
-              Discover our handpicked selection of premium outdoor sports equipment. Each product is carefully 
+            <p className="font-lato text-base text-earth-brown max-w-2xl mx-auto px-4">
+              Discover our handpicked selection of premium outdoor sports equipment. Each product is carefully
               selected for quality, durability, and performance to help you excel in your sport.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {featuredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -75,7 +75,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -84,20 +84,20 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-forest-green mb-4">
+            <h2 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl text-forest-green mb-4">
               WHY CHOOSE <span className="text-sunset-orange">SPORTSEQUIP</span>
             </h2>
-            <p className="font-lato text-base sm:text-lg text-earth-brown max-w-3xl mx-auto">
+            <p className="font-lato text-base text-earth-brown max-w-3xl mx-auto">
               We're committed to providing you with the best sports equipment and shopping experience
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 icon: '🚚',
                 title: 'Free Shipping',
-                description: 'Free shipping on all orders over $50. Fast and reliable delivery to your doorstep.',
+                description: 'Free shipping on all orders over $50. Fast delivery to your doorstep.',
                 bgColor: 'bg-forest-green',
                 textColor: 'text-white',
                 descColor: 'text-green-100',
@@ -121,7 +121,7 @@ const Home = () => {
               {
                 icon: '⭐',
                 title: 'Quality Guaranteed',
-                description: 'All products are carefully selected and tested. We stand behind every item we sell.',
+                description: 'All products are carefully selected and tested. We stand behind every item.',
                 bgColor: 'bg-white',
                 textColor: 'text-forest-green',
                 descColor: 'text-earth-brown',
@@ -134,13 +134,13 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`${feature.bgColor} ${feature.border || ''} text-center p-6 sm:p-8 rounded-lg hover:shadow-lg transition-shadow min-h-[220px] flex flex-col justify-center`}
+                className={`${feature.bgColor} ${feature.border || ''} text-center p-6 rounded-xl hover:shadow-lg transition-shadow flex flex-col justify-center`}
               >
-                <div className="text-5xl mb-4">{feature.icon}</div>
-                <h3 className={`font-nunito font-extrabold text-xl sm:text-2xl mb-2 ${feature.textColor}`}>
+                <div className="text-4xl mb-3">{feature.icon}</div>
+                <h3 className={`font-nunito font-extrabold text-xl mb-2 ${feature.textColor}`}>
                   {feature.title}
                 </h3>
-                <p className={`font-lato text-sm sm:text-base ${feature.descColor}`}>{feature.description}</p>
+                <p className={`font-lato text-sm ${feature.descColor}`}>{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -148,7 +148,7 @@ const Home = () => {
       </section>
 
       {/* Categories Section */}
-      <section className="py-12 sm:py-20 bg-forest-green text-white">
+      <section className="py-12 sm:py-16 bg-forest-green text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -157,21 +157,21 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl mb-4">
+            <h2 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl mb-4">
               SHOP BY <span className="text-sunset-orange">CATEGORY</span>
             </h2>
-            <p className="font-lato text-base sm:text-lg text-green-100 max-w-3xl mx-auto">
-              Explore our wide range of sports equipment organized by category. Find exactly what you need 
-              for your favorite sport or activity.
+            <p className="font-lato text-base text-green-100 max-w-3xl mx-auto">
+              Explore our wide range of sports equipment. Find exactly what you need
+              for your favorite sport.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
-              { name: 'Shoes', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&auto=format', link: '/shop?category=shoes', description: 'Running, training, and athletic footwear' },
-              { name: 'Apparel', image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=500&fit=crop&auto=format', link: '/shop?category=apparel', description: 'Performance clothing and activewear' },
-              { name: 'Balls', image: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop&auto=format', link: '/shop?category=balls', description: 'Sports balls for all activities' },
-              { name: 'Equipment', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=500&fit=crop&auto=format', link: '/shop?category=equipment', description: 'Training and sports equipment' },
+              { name: 'Shoes', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&auto=format', link: '/shop?category=shoes', description: 'Running & athletic footwear' },
+              { name: 'Apparel', image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=500&h=500&fit=crop&auto=format', link: '/shop?category=apparel', description: 'Performance activewear' },
+              { name: 'Balls', image: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=500&h=500&fit=crop&auto=format', link: '/shop?category=balls', description: 'Sports balls for all' },
+              { name: 'Equipment', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=500&fit=crop&auto=format', link: '/shop?category=equipment', description: 'Training gear' },
             ].map((category, index) => (
               <motion.div
                 key={category.name}
@@ -186,19 +186,19 @@ const Home = () => {
                   <img
                     src={getCategoryImage(category)}
                     alt={category.name}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-110"
                     onError={() => handleImageError(category.name)}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-green to-transparent opacity-80" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                    <h3 className="font-nunito font-extrabold text-xl sm:text-2xl text-white mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <h3 className="font-nunito font-extrabold text-xl text-white mb-2">
                       {category.name}
                     </h3>
-                    <p className="font-lato text-green-100 text-xs sm:text-sm mb-2">
+                    <p className="font-lato text-green-100 text-xs mb-2">
                       {category.description}
                     </p>
-                    <span className="font-lato text-sunset-orange group-hover:underline font-semibold text-sm sm:text-base">
+                    <span className="font-lato text-sunset-orange group-hover:underline font-semibold text-sm">
                       Shop Now →
                     </span>
                   </div>
@@ -210,7 +210,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-12 sm:py-20 bg-mountain-gray">
+      <section className="py-12 sm:py-16 bg-mountain-gray">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -219,10 +219,10 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-forest-green mb-4">
+            <h2 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl text-forest-green mb-4">
               WHAT OUR <span className="text-sunset-orange">CUSTOMERS</span> SAY
             </h2>
-            <p className="font-lato text-base sm:text-lg text-earth-brown max-w-3xl mx-auto">
+            <p className="font-lato text-base text-earth-brown max-w-3xl mx-auto">
               Don't just take our word for it. See what athletes like you are saying about SPORTSEQUIP.
             </p>
           </motion.div>
@@ -254,17 +254,17 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="bg-white glossy-card p-6 sm:p-8 min-h-[280px] flex flex-col"
+                className="bg-white glossy-card p-6 sm:p-8 flex flex-col"
               >
-                <div className="flex mb-4">
+                <div className="flex mb-3">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">⭐</span>
+                    <span key={i} className="text-yellow-400 text-lg">⭐</span>
                   ))}
                 </div>
-                <p className="font-lato text-earth-brown text-sm sm:text-base mb-4 italic leading-relaxed">
+                <p className="font-lato text-earth-brown text-sm sm:text-base mb-6 italic leading-relaxed">
                   "{testimonial.quote}"
                 </p>
-                <div className="border-t border-mountain-gray pt-4">
+                <div className="mt-auto border-t border-mountain-gray pt-4">
                   <p className="font-nunito font-extrabold text-forest-green text-sm sm:text-base">
                     {testimonial.name}
                   </p>
@@ -279,7 +279,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-20 bg-forest-green text-white">
+      <section className="py-12 sm:py-16 bg-forest-green text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {[
@@ -296,10 +296,10 @@ const Home = () => {
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className="text-center"
               >
-                <p className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-sunset-orange mb-2">
+                <p className="font-nunito font-extrabold text-3xl sm:text-4xl text-sunset-orange mb-2">
                   {stat.number}
                 </p>
-                <p className="font-lato text-green-100 text-sm sm:text-base">
+                <p className="font-lato text-green-100 text-sm">
                   {stat.label}
                 </p>
               </motion.div>
@@ -309,7 +309,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-20 bg-sunset-orange text-white">
+      <section className="py-16 sm:py-20 bg-sunset-orange text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -321,8 +321,8 @@ const Home = () => {
               READY FOR ADVENTURE?
             </h2>
             <p className="font-lato text-base sm:text-lg md:text-xl mb-6 sm:mb-8">
-              Join thousands of outdoor enthusiasts who trust SPORTSEQUIP for their gear needs. 
-              Start shopping today and discover why we're the preferred choice for athletes worldwide.
+              Join thousands of outdoor enthusiasts who trust SPORTSEQUIP for their gear needs.
+              Start shopping today and discover why we're the preferred choice for athletes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/shop">

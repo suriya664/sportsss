@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -14,16 +14,17 @@ const Navbar = () => {
   const userMenuRef = useRef(null);
   const dashboardMenuRef = useRef(null);
   const { getCartItemCount, setIsCartOpen } = useCart();
-  const { user, logout, isAdmin } = useAuth();
+  const { user, logout, isAdmin, isStaff } = useAuth();
   const { getWishlistCount } = useWishlist();
   const navigate = useNavigate();
+  const location = useLocation();
   const cartItemCount = getCartItemCount();
   const wishlistCount = getWishlistCount();
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/home2', label: 'Home 2' },
     { path: '/shop', label: 'Shop' },
+    { path: '/wishlist', label: 'Wishlist' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
   ];
@@ -71,15 +72,21 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-3 xl:space-x-6 flex-1 justify-center max-w-4xl mx-auto">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="font-nunito font-bold text-sm xl:text-lg uppercase tracking-wider hover:text-sunset-orange transition-colors duration-300 whitespace-nowrap"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`font-nunito font-bold text-sm xl:text-lg uppercase tracking-wider transition-colors duration-300 whitespace-nowrap pb-1 border-b-2 ${isActive
+                      ? 'text-sunset-orange border-sunset-orange'
+                      : 'text-white border-transparent hover:text-sunset-orange'
+                      }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               {/* Dashboard Dropdown - Always Visible */}
               <div className="relative" ref={dashboardMenuRef}>
                 <motion.button
@@ -113,6 +120,13 @@ const Navbar = () => {
                         className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
                       >
                         Admin Dashboard
+                      </Link>
+                      <Link
+                        to="/staff-dashboard"
+                        onClick={() => setIsDashboardMenuOpen(false)}
+                        className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
+                      >
+                        Staff Dashboard
                       </Link>
                       <Link
                         to="/user-dashboard"
@@ -163,7 +177,7 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         className="absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 border border-mountain-gray"
-                        style={{ 
+                        style={{
                           right: '0',
                           maxWidth: 'calc(100vw - 2rem)',
                           minWidth: '200px'
@@ -178,11 +192,20 @@ const Navbar = () => {
                         </Link>
                         {isAdmin() && (
                           <Link
-                            to="/admin"
+                            to="/admin-dashboard"
                             onClick={() => setIsUserMenuOpen(false)}
                             className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
                           >
                             Admin Dashboard
+                          </Link>
+                        )}
+                        {isStaff() && (
+                          <Link
+                            to="/staff-dashboard"
+                            onClick={() => setIsUserMenuOpen(false)}
+                            className="block px-4 py-2 font-lato text-forest-green hover:bg-mountain-gray transition-colors"
+                          >
+                            Staff Dashboard
                           </Link>
                         )}
                         <button
@@ -199,7 +222,7 @@ const Navbar = () => {
                 <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
                   <Link to="/register">
                     <motion.button
-                      className="font-nunito font-bold text-xs xl:text-sm uppercase px-2 xl:px-4 py-1.5 xl:py-2 border-2 border-white hover:bg-white hover:text-forest-green transition-colors rounded-md whitespace-nowrap"
+                      className="font-nunito font-bold text-xs xl:text-sm uppercase h-9 px-4 py-2 border-2 border-white hover:bg-white hover:text-forest-green transition-colors rounded-lg whitespace-nowrap"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -208,7 +231,7 @@ const Navbar = () => {
                   </Link>
                   <Link to="/login">
                     <motion.button
-                      className="font-nunito font-bold text-xs xl:text-sm uppercase px-2 xl:px-4 py-1.5 xl:py-2 bg-sunset-orange hover:bg-orange-600 transition-colors rounded-md whitespace-nowrap"
+                      className="font-nunito font-bold text-xs xl:text-sm uppercase h-9 px-4 py-2 bg-sunset-orange hover:bg-orange-600 transition-colors rounded-lg whitespace-nowrap"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -326,65 +349,74 @@ const Navbar = () => {
               className="lg:hidden overflow-hidden"
             >
               <div className="px-4 py-4 space-y-2 bg-green-800">
-                       {navLinks.map((link) => (
-                         <Link
-                           key={link.path}
-                           to={link.path}
-                           onClick={() => setIsMenuOpen(false)}
-                           className="block font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
-                         >
-                           {link.label}
-                         </Link>
-                       ))}
-                       {/* Dashboard - Always Visible */}
-                       <div className="space-y-2">
-                         <button
-                           onClick={() => setIsDashboardMenuOpen(!isDashboardMenuOpen)}
-                           className="w-full font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center flex items-center justify-center space-x-1"
-                         >
-                           <span>Dashboard</span>
-                           <svg
-                             xmlns="http://www.w3.org/2000/svg"
-                             className={`h-4 w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke="currentColor"
-                           >
-                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                           </svg>
-                         </button>
-                         {isDashboardMenuOpen && (
-                           <div className="pl-4 space-y-2">
-                             <Link
-                               to="/admin-dashboard"
-                               onClick={() => {
-                                 setIsMenuOpen(false);
-                                 setIsDashboardMenuOpen(false);
-                               }}
-                               className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
-                             >
-                               Admin Dashboard
-                             </Link>
-                             <Link
-                               to="/user-dashboard"
-                               onClick={() => {
-                                 setIsMenuOpen(false);
-                                 setIsDashboardMenuOpen(false);
-                               }}
-                               className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
-                             >
-                               User Dashboard
-                             </Link>
-                           </div>
-                         )}
-                       </div>
-                       <Link
-                         to="/wishlist"
-                         onClick={() => setIsMenuOpen(false)}
-                         className="block font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
-                       >
-                         Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
-                       </Link>
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block font-nunito font-bold text-base uppercase tracking-wider py-2 transition-colors text-center ${isActive
+                        ? 'text-sunset-orange'
+                        : 'text-white hover:text-sunset-orange'
+                        }`}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
+                {/* Dashboard - Always Visible */}
+                <div className="space-y-2">
+                  <button
+                    onClick={() => setIsDashboardMenuOpen(!isDashboardMenuOpen)}
+                    className="w-full font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center flex items-center justify-center space-x-1"
+                  >
+                    <span>Dashboard</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className={`h-4 w-4 transition-transform ${isDashboardMenuOpen ? 'rotate-180' : ''}`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {isDashboardMenuOpen && (
+                    <div className="pl-4 space-y-2">
+                      <Link
+                        to="/admin-dashboard"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsDashboardMenuOpen(false);
+                        }}
+                        className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
+                      >
+                        Admin Dashboard
+                      </Link>
+                      <Link
+                        to="/staff-dashboard"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsDashboardMenuOpen(false);
+                        }}
+                        className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
+                      >
+                        Staff Dashboard
+                      </Link>
+                      <Link
+                        to="/user-dashboard"
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setIsDashboardMenuOpen(false);
+                        }}
+                        className="block font-nunito font-bold text-sm uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
+                      >
+                        User Dashboard
+                      </Link>
+                    </div>
+                  )}
+                </div>
                 {user ? (
                   <>
                     <Link
@@ -396,11 +428,20 @@ const Navbar = () => {
                     </Link>
                     {isAdmin() && (
                       <Link
-                        to="/admin"
+                        to="/admin-dashboard"
                         onClick={() => setIsMenuOpen(false)}
                         className="block font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
                       >
                         Admin
+                      </Link>
+                    )}
+                    {isStaff() && (
+                      <Link
+                        to="/staff-dashboard"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block font-nunito font-bold text-base uppercase tracking-wider py-2 hover:text-sunset-orange transition-colors text-center"
+                      >
+                        Staff
                       </Link>
                     )}
                     <button

@@ -114,6 +114,10 @@ export const AuthProvider = ({ children }) => {
     return user && user.role === 'admin';
   };
 
+  const isStaff = () => {
+    return user && (user.role === 'staff' || user.role === 'admin');
+  };
+
   const value = {
     user,
     loading,
@@ -122,6 +126,7 @@ export const AuthProvider = ({ children }) => {
     logout,
     updateProfile,
     isAdmin,
+    isStaff,
     isAuthenticated: !!user,
   };
 

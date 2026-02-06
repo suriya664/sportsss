@@ -52,20 +52,27 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-mountain-gray py-12 px-4 sm:py-16">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-sunset-orange/20 via-black to-black py-10 px-4 sm:py-16 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-30">
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-sunset-orange rounded-full blur-[150px]"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-forest-green rounded-full blur-[150px]"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Logo */}
         <div className="text-center mb-8 sm:mb-12">
           <Link to="/">
             <motion.div
-              className="font-nunito font-extrabold text-3xl sm:text-4xl text-sunset-orange inline-block"
-              whileHover={{ scale: 1.1 }}
+              className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-white drop-shadow-2xl inline-block group"
+              whileHover={{ scale: 1.05 }}
             >
-              SPORTSEQUIP
+              SPORTSE<span className="text-sunset-orange group-hover:text-cyan-400 transition-colors">QUIP</span>
             </motion.div>
           </Link>
+          <p className="font-lato text-orange-100/60 mt-2 text-xs sm:text-sm tracking-widest uppercase font-bold text-shadow-sm">Elevate Your Game</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Register Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -73,103 +80,103 @@ const Register = () => {
             className="w-full"
           >
             <div className="bg-white glossy-card p-6 sm:p-8">
-          <div className="text-center mb-6 sm:mb-8">
-            <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl text-forest-green mb-2">
-              CREATE ACCOUNT
-            </h1>
-            <p className="font-lato text-earth-brown text-sm sm:text-base">
-              Join SPORTSEQUIP today
-            </p>
-          </div>
+              <div className="text-center mb-6 sm:mb-8">
+                <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl text-forest-green mb-2">
+                  CREATE ACCOUNT
+                </h1>
+                <p className="font-lato text-earth-brown text-sm sm:text-base">
+                  Join SPORTSEQUIP today
+                </p>
+              </div>
 
-          {error && (
-            <div className="mb-6 p-3 sm:p-4 bg-red-100 border border-red-400 text-red-700 rounded-md font-lato text-xs sm:text-sm">
-              {error}
+              {error && (
+                <div className="mb-6 p-3 sm:p-4 bg-red-100 border border-red-400 text-red-700 rounded-md font-lato text-xs sm:text-sm">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <Input
+                  label="Full Name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Doe"
+                  required
+                />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
+                  required
+                />
+
+                <Input
+                  label="Password"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="At least 6 characters"
+                  required
+                />
+
+                <Input
+                  label="Confirm Password"
+                  type="password"
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder="Confirm your password"
+                  required
+                />
+
+                <div className="flex items-start">
+                  <input
+                    type="checkbox"
+                    className="mt-1 mr-2 border-mountain-gray flex-shrink-0"
+                    required
+                  />
+                  <label className="font-lato text-xs sm:text-sm text-earth-brown">
+                    I agree to the{' '}
+                    <Link to="/terms" className="text-sunset-orange hover:underline">
+                      Terms of Service
+                    </Link>{' '}
+                    and{' '}
+                    <Link to="/privacy" className="text-sunset-orange hover:underline">
+                      Privacy Policy
+                    </Link>
+                  </label>
+                </div>
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  disabled={loading}
+                >
+                  {loading ? 'Creating Account...' : 'Create Account'}
+                </Button>
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="font-lato text-earth-brown text-sm sm:text-base">
+                  Already have an account?{' '}
+                  <Link
+                    to="/login"
+                    className="text-sunset-orange hover:underline font-semibold"
+                  >
+                    Sign in
+                  </Link>
+                </p>
+              </div>
             </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <Input
-              label="Full Name"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="John Doe"
-              required
-            />
-
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              required
-            />
-
-            <Input
-              label="Password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="At least 6 characters"
-              required
-            />
-
-            <Input
-              label="Confirm Password"
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm your password"
-              required
-            />
-
-            <div className="flex items-start">
-              <input
-                type="checkbox"
-                className="mt-1 mr-2 border-mountain-gray flex-shrink-0"
-                required
-              />
-              <label className="font-lato text-xs sm:text-sm text-earth-brown">
-                I agree to the{' '}
-                <Link to="/terms" className="text-sunset-orange hover:underline">
-                  Terms of Service
-                </Link>{' '}
-                and{' '}
-                <Link to="/privacy" className="text-sunset-orange hover:underline">
-                  Privacy Policy
-                </Link>
-              </label>
-            </div>
-
-            <Button
-              type="submit"
-              variant="primary"
-              size="lg"
-              className="w-full"
-              disabled={loading}
-            >
-              {loading ? 'Creating Account...' : 'Create Account'}
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="font-lato text-earth-brown text-sm sm:text-base">
-              Already have an account?{' '}
-              <Link
-                to="/login"
-                className="text-sunset-orange hover:underline font-semibold"
-              >
-                Sign in
-              </Link>
-            </p>
-          </div>
-        </div>
           </motion.div>
 
           {/* Why Join Section */}

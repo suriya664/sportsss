@@ -63,13 +63,13 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-mountain-gray flex">
+    <div className="h-screen bg-gray-50 flex overflow-hidden">
       {/* Enhanced Sidebar */}
       <motion.aside
-        initial={{ x: -300 }}
-        animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -300) }}
-        transition={{ duration: 0.15, ease: 'easeInOut' }}
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-purple-600 to-purple-700 text-white transform transition-transform duration-150 ease-in-out lg:translate-x-0 shadow-2xl`}
+        initial={{ x: -288 }}
+        animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -288) }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed lg:relative inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-purple-700 to-indigo-800 text-white shadow-2xl flex flex-col h-full"
       >
         <div className="flex flex-col h-full">
           {/* Enhanced Logo */}
@@ -98,21 +98,19 @@ const UserDashboard = () => {
           </div>
 
           {/* Enhanced Navigation */}
-          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+          <nav className="flex-1 p-4 space-y-2 overflow-y-auto custom-scrollbar">
             {sidebarItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => {
                   setActiveSection(item.id);
-                  setSidebarOpen(false);
+                  if (!isDesktop) setSidebarOpen(false);
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 relative ${
-                  activeSection === item.id
-                    ? 'bg-white text-purple-700 shadow-lg'
-                    : 'hover:bg-purple-600 text-purple-100 hover:shadow-md'
-                }`}
+                whileHover={{ x: 4 }}
+                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 relative ${activeSection === item.id
+                  ? 'bg-white text-purple-700 shadow-lg'
+                  : 'hover:bg-white/10 text-purple-100'
+                  }`}
               >
                 <span className="text-xl">{item.icon}</span>
                 <span className="font-lato font-semibold">{item.label}</span>
@@ -121,45 +119,57 @@ const UserDashboard = () => {
                     {wishlist.length}
                   </span>
                 )}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute right-2 w-2 h-2 bg-purple-700 rounded-full"
-                  />
-                )}
               </motion.button>
             ))}
           </nav>
 
+          {/* Persistent CTA Section */}
+          <div className="p-4 mt-auto">
+            <div className="bg-gradient-to-br from-purple-500/30 to-indigo-500/30 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-inner">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                  <span className="text-lg">💬</span>
+                </div>
+                <h4 className="font-nunito font-bold text-sm">Need Help?</h4>
+              </div>
+              <p className="text-xs text-purple-100 mb-3 font-lato leading-relaxed">
+                Our support team is available 24/7 for your sports gear queries.
+              </p>
+              <button className="w-full py-2 bg-white text-purple-700 rounded-lg text-xs font-bold hover:bg-purple-50 transition-colors shadow-md">
+                Contact Support
+              </button>
+            </div>
+          </div>
+
           {/* Enhanced User Info */}
-          <div className="p-4 border-t border-purple-500 bg-gradient-to-t from-purple-700 to-transparent">
+          <div className="p-4 border-t border-white/10 bg-black/10">
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center shadow-lg ring-2 ring-white ring-offset-2 ring-offset-purple-700">
-                  <span className="text-white font-bold text-lg">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center shadow-lg ring-2 ring-white/20">
+                  <span className="text-white font-bold text-sm">
                     {user?.name?.charAt(0).toUpperCase() || 'U'}
                   </span>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-purple-700"></div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-indigo-800"></div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name || 'User'}</p>
-                <p className="font-lato text-xs text-purple-200 truncate">{user?.email || 'user@example.com'}</p>
+                <p className="font-lato font-bold text-xs truncate text-white">{user?.name || 'User'}</p>
+                <p className="font-lato text-[10px] text-purple-200 truncate">{user?.email || 'user@example.com'}</p>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => navigate('/')}
-                className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-500 rounded-lg font-lato text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                className="px-2 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-lato text-[10px] font-bold transition-all text-center"
               >
-                ← Back to Site
+                Home
               </button>
               <button
                 onClick={() => {
                   logout();
                   navigate('/');
                 }}
-                className="w-full px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 rounded-lg font-lato text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                className="px-2 py-2 bg-red-500/20 hover:bg-red-500/40 text-red-100 rounded-lg font-lato text-[10px] font-bold transition-all text-center"
               >
                 Sign Out
               </button>
@@ -177,10 +187,10 @@ const UserDashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-gray-50">
         {/* Enhanced Top Bar */}
-        <header className="bg-white shadow-lg sticky top-0 z-30 border-b border-gray-200">
-          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
+        <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-gray-100">
+          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -367,13 +377,12 @@ const UserDashboard = () => {
                             <div>
                               <div className="flex items-center gap-3 mb-2">
                                 <p className="font-lato font-semibold text-forest-green">Order #{order.id}</p>
-                                <span className={`px-3 py-1 rounded-full text-xs font-lato font-semibold ${
-                                  order.status === 'delivered'
-                                    ? 'bg-green-100 text-green-800'
-                                    : order.status === 'shipped'
+                                <span className={`px-3 py-1 rounded-full text-xs font-lato font-semibold ${order.status === 'delivered'
+                                  ? 'bg-green-100 text-green-800'
+                                  : order.status === 'shipped'
                                     ? 'bg-blue-100 text-blue-800'
                                     : 'bg-yellow-100 text-yellow-800'
-                                }`}>
+                                  }`}>
                                   {order.status || 'Pending'}
                                 </span>
                               </div>
@@ -493,11 +502,10 @@ const UserDashboard = () => {
                         <p className="font-lato text-sm text-earth-brown">{activity.details}</p>
                         <p className="font-lato text-xs text-earth-brown mt-1">{activity.time}</p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${
-                        activity.type === 'order' ? 'bg-blue-100 text-blue-800' :
+                      <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${activity.type === 'order' ? 'bg-blue-100 text-blue-800' :
                         activity.type === 'wishlist' ? 'bg-pink-100 text-pink-800' :
-                        'bg-purple-100 text-purple-800'
-                      }`}>
+                          'bg-purple-100 text-purple-800'
+                        }`}>
                         {activity.type}
                       </span>
                     </div>

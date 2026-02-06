@@ -79,13 +79,13 @@ const AdminDashboard = () => {
   const chartHeight = 200;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-mountain-gray flex">
+    <div className="h-screen bg-gray-50 flex overflow-hidden">
       {/* Enhanced Sidebar */}
       <motion.aside
-        initial={{ x: -300 }}
-        animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -300) }}
-        transition={{ duration: 0.15, ease: 'easeInOut' }}
-        className={`fixed lg:static inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-forest-green to-green-800 text-white transform transition-transform duration-150 ease-in-out lg:translate-x-0 shadow-2xl`}
+        initial={{ x: -288 }}
+        animate={{ x: isDesktop ? 0 : (sidebarOpen ? 0 : -288) }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="fixed lg:relative inset-y-0 left-0 z-40 w-72 bg-gradient-to-b from-forest-green to-green-900 text-white shadow-2xl flex flex-col h-full"
       >
         <div className="flex flex-col h-full">
           {/* Enhanced Logo */}
@@ -114,63 +114,73 @@ const AdminDashboard = () => {
           </div>
 
           {/* Enhanced Navigation */}
-          <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+          <nav className="flex-1 p-4 space-y-2 overflow-y-auto mt-2">
             {sidebarItems.map((item) => (
               <motion.button
                 key={item.id}
                 onClick={() => {
                   setActiveSection(item.id);
-                  setSidebarOpen(false);
+                  if (!isDesktop) setSidebarOpen(false);
                 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                  activeSection === item.id
+                whileHover={{ x: 4 }}
+                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 relative ${activeSection === item.id
                     ? 'bg-gradient-to-r from-sunset-orange to-orange-500 text-white shadow-lg'
-                    : 'hover:bg-green-700 text-gray-200 hover:shadow-md'
-                }`}
+                    : 'hover:bg-white/10 text-gray-200'
+                  }`}
               >
                 <span className="text-xl">{item.icon}</span>
                 <span className="font-lato font-semibold">{item.label}</span>
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="ml-auto w-2 h-2 bg-white rounded-full"
-                  />
-                )}
               </motion.button>
             ))}
           </nav>
 
+          {/* Persistent Admin Support CTA */}
+          <div className="p-4 mt-auto">
+            <div className="bg-gradient-to-br from-green-500/30 to-emerald-500/30 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-inner">
+              <div className="flex items-center space-x-3 mb-3">
+                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
+                  <span className="text-lg">🛠️</span>
+                </div>
+                <h4 className="font-nunito font-bold text-sm text-white">Admin Help</h4>
+              </div>
+              <p className="text-xs text-green-100 mb-3 font-lato leading-relaxed">
+                System status: <span className="text-green-400 font-bold">Online</span>. Need technical support?
+              </p>
+              <button className="w-full py-2 bg-white text-forest-green rounded-lg text-xs font-bold hover:bg-green-50 transition-colors shadow-md">
+                Tech Support
+              </button>
+            </div>
+          </div>
+
           {/* Enhanced User Info */}
-          <div className="p-4 border-t border-green-700 bg-gradient-to-t from-green-800 to-transparent">
+          <div className="p-4 border-t border-white/10 bg-black/10">
             <div className="flex items-center space-x-3 mb-4">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sunset-orange to-orange-600 flex items-center justify-center shadow-lg ring-2 ring-white ring-offset-2 ring-offset-green-800">
-                  <span className="text-white font-bold text-lg">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sunset-orange to-orange-600 flex items-center justify-center shadow-lg ring-2 ring-white/20">
+                  <span className="text-white font-bold text-sm">
                     {user?.name?.charAt(0).toUpperCase() || 'A'}
                   </span>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-green-800"></div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-green-900"></div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-lato font-semibold text-sm truncate text-white">{user?.name || 'Admin'}</p>
-                <p className="font-lato text-xs text-green-200 truncate">{user?.email || 'admin@sportsequip.com'}</p>
+                <p className="font-lato font-bold text-xs truncate text-white">{user?.name || 'Admin'}</p>
+                <p className="font-lato text-[10px] text-green-200 truncate">{user?.email || 'admin@sportsequip.com'}</p>
               </div>
             </div>
-            <div className="space-y-2">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => navigate('/')}
-                className="w-full px-4 py-2 bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 rounded-lg font-lato text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                className="px-2 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-lato text-[10px] font-bold transition-all text-center"
               >
-                ← Back to Site
+                Home
               </button>
               <button
                 onClick={() => {
                   logout();
                   navigate('/');
                 }}
-                className="w-full px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 rounded-lg font-lato text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                className="px-2 py-2 bg-red-500/20 hover:bg-red-500/40 text-red-100 rounded-lg font-lato text-[10px] font-bold transition-all text-center"
               >
                 Sign Out
               </button>
@@ -188,10 +198,10 @@ const AdminDashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden bg-gray-50">
         {/* Enhanced Top Bar */}
-        <header className="bg-white shadow-lg sticky top-0 z-30 border-b border-gray-200">
-          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-20">
+        <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-30 border-b border-gray-100">
+          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -328,7 +338,7 @@ const AdminDashboard = () => {
                       const x = index * 60 + 30;
                       const y = chartHeight - (value / maxRevenue) * (chartHeight - 40) - 20;
                       const nextX = (index + 1) * 60 + 30;
-                      const nextY = index < revenueData.length - 1 
+                      const nextY = index < revenueData.length - 1
                         ? chartHeight - (revenueData[index + 1] / maxRevenue) * (chartHeight - 40) - 20
                         : y;
                       return (
@@ -458,11 +468,10 @@ const AdminDashboard = () => {
                           </td>
                           <td className="px-6 py-4 font-lato text-earth-brown">{u.email}</td>
                           <td className="px-6 py-4">
-                            <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${
-                              u.role === 'admin' 
-                                ? 'bg-red-100 text-red-800' 
-                                : 'bg-blue-100 text-blue-800'
-                            }`}>
+                            <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${u.role === 'admin'
+                              ? 'bg-red-100 text-red-800'
+                              : 'bg-blue-100 text-blue-800'
+                              }`}>
                               {u.role}
                             </span>
                           </td>
@@ -621,11 +630,10 @@ const AdminDashboard = () => {
                           {log.user} • {log.time}
                         </p>
                       </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${
-                        log.type === 'order' ? 'bg-purple-100 text-purple-800' :
+                      <span className={`px-3 py-1 rounded-full text-xs font-lato capitalize ${log.type === 'order' ? 'bg-purple-100 text-purple-800' :
                         log.type === 'product' ? 'bg-green-100 text-green-800' :
-                        'bg-blue-100 text-blue-800'
-                      }`}>
+                          'bg-blue-100 text-blue-800'
+                        }`}>
                         {log.type}
                       </span>
                     </div>

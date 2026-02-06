@@ -46,16 +46,16 @@ const Account = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-forest-green mb-6 sm:mb-8 text-center sm:text-left">
+          <h1 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl text-forest-green mb-6 text-center sm:text-left">
             MY <span className="text-sunset-orange">ACCOUNT</span>
           </h1>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Profile Section */}
             <div className="lg:col-span-2 space-y-6 order-2 lg:order-1">
-              <div className="bg-white glossy-card p-6 sm:p-8 min-h-[400px]">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-4">
-                  <h2 className="font-nunito font-extrabold text-xl sm:text-2xl text-forest-green">
+              <div className="bg-white glossy-card p-6 sm:p-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+                  <h2 className="font-nunito font-extrabold text-xl text-forest-green">
                     Profile Information
                   </h2>
                   {!isEditing && (
@@ -119,16 +119,17 @@ const Account = () => {
               </div>
 
               {/* Order History */}
-              <div className="bg-white glossy-card p-6 sm:p-8 min-h-[250px]">
-                <h2 className="font-nunito font-extrabold text-xl sm:text-2xl text-forest-green mb-4">
+              <div className="bg-white glossy-card p-6 sm:p-8">
+                <h2 className="font-nunito font-extrabold text-xl text-forest-green mb-4">
                   Order History
                 </h2>
-                <p className="font-lato text-earth-brown">
-                  No orders yet. Start shopping to see your order history here.
+                <p className="font-lato text-earth-brown text-sm">
+                  No orders yet. Start shopping to see your history here.
                 </p>
                 <div className="mt-4">
                   <Button
                     variant="primary"
+                    size="sm"
                     onClick={() => navigate('/shop')}
                   >
                     Start Shopping
@@ -139,8 +140,8 @@ const Account = () => {
 
             {/* Sidebar */}
             <div className="lg:col-span-1 space-y-6 order-1 lg:order-2">
-              <div className="bg-white glossy-card p-6 sm:p-8 min-h-[200px]">
-                <h3 className="font-nunito font-extrabold text-lg sm:text-xl text-forest-green mb-4">
+              <div className="bg-white glossy-card p-6 sm:p-8">
+                <h3 className="font-nunito font-extrabold text-lg text-forest-green mb-4">
                   Account Details
                 </h3>
                 <div className="space-y-3 font-lato text-sm">
@@ -160,8 +161,8 @@ const Account = () => {
               </div>
 
               {user.role === 'admin' && (
-                <div className="bg-sunset-orange text-white glossy-card p-6 sm:p-8 min-h-[200px]">
-                  <h3 className="font-nunito font-extrabold text-lg sm:text-xl mb-4">
+                <div className="bg-sunset-orange text-white glossy-card p-6 sm:p-8">
+                  <h3 className="font-nunito font-extrabold text-lg mb-4">
                     Admin Access
                   </h3>
                   <Button

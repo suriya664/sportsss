@@ -45,20 +45,27 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-mountain-gray py-12 px-4 sm:py-16">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-forest-green via-forest-green/95 to-black py-10 px-4 sm:py-16 relative overflow-hidden">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sunset-orange rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-forest-green rounded-full blur-[120px]"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Logo */}
         <div className="text-center mb-8 sm:mb-12">
           <Link to="/">
             <motion.div
-              className="font-nunito font-extrabold text-3xl sm:text-4xl text-sunset-orange inline-block"
-              whileHover={{ scale: 1.1 }}
+              className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-white drop-shadow-2xl inline-block group"
+              whileHover={{ scale: 1.05 }}
             >
-              SPORTSEQUIP
+              SPORTSE<span className="text-sunset-orange group-hover:text-white transition-colors">QUIP</span>
             </motion.div>
           </Link>
+          <p className="font-lato text-green-100/60 mt-2 text-xs sm:text-sm tracking-widest uppercase">Premium Sports Equipment</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Login Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -66,117 +73,117 @@ const Login = () => {
             className="w-full"
           >
             <div className="bg-white glossy-card p-6 sm:p-8">
-          <div className="text-center mb-6 sm:mb-8">
-            <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl text-forest-green mb-2">
-              WELCOME BACK
-            </h1>
-            <p className="font-lato text-earth-brown text-sm sm:text-base">
-              Sign in to your account
-            </p>
-          </div>
+              <div className="text-center mb-6 sm:mb-8">
+                <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl text-forest-green mb-2">
+                  WELCOME BACK
+                </h1>
+                <p className="font-lato text-earth-brown text-sm sm:text-base">
+                  Sign in to your account
+                </p>
+              </div>
 
-          {/* Quick Login Buttons */}
-          <div className="mb-6 space-y-3">
-            <p className="font-lato text-sm text-earth-brown text-center mb-3 font-semibold">
-              Quick Login:
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                className="w-full text-xs sm:text-sm"
-                onClick={() => handleQuickLogin('user@example.com', 'user123')}
-              >
-                Login as User
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                className="w-full text-xs sm:text-sm"
-                onClick={() => handleQuickLogin('admin@sportsequip.com', 'admin123')}
-              >
-                Login as Admin
-              </Button>
-            </div>
-          </div>
+              {/* Quick Login Buttons */}
+              <div className="mb-6 space-y-3">
+                <p className="font-lato text-sm text-earth-brown text-center mb-3 font-semibold">
+                  Quick Login:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-xs sm:text-sm"
+                    onClick={() => handleQuickLogin('user@example.com', 'user123')}
+                  >
+                    Login as User
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="w-full text-xs sm:text-sm"
+                    onClick={() => handleQuickLogin('admin@sportsequip.com', 'admin123')}
+                  >
+                    Login as Admin
+                  </Button>
+                </div>
+              </div>
 
-          <div className="relative mb-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-mountain-gray"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white font-lato text-earth-brown">Or continue with</span>
-            </div>
-          </div>
+              <div className="relative mb-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-mountain-gray"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white font-lato text-earth-brown">Or continue with</span>
+                </div>
+              </div>
 
-          {error && (
-            <div className="mb-6 p-3 sm:p-4 bg-red-100 border border-red-400 text-red-700 rounded-md font-lato text-xs sm:text-sm">
-              {error}
-            </div>
-          )}
+              {error && (
+                <div className="mb-6 p-3 sm:p-4 bg-red-100 border border-red-400 text-red-700 rounded-md font-lato text-xs sm:text-sm">
+                  {error}
+                </div>
+              )}
 
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-            <Input
-              label="Email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your@email.com"
-              required
-            />
-
-            <Input
-              label="Password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              required
-            />
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="mr-2 border-mountain-gray"
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <Input
+                  label="Email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
+                  required
                 />
-                <span className="font-lato text-xs sm:text-sm text-earth-brown">
-                  Remember me
-                </span>
-              </label>
-              <Link
-                to="/forgot-password"
-                className="font-lato text-xs sm:text-sm text-sunset-orange hover:underline"
-              >
-                Forgot password?
-              </Link>
+
+                <Input
+                  label="Password"
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  required
+                />
+
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      className="mr-2 border-mountain-gray"
+                    />
+                    <span className="font-lato text-xs sm:text-sm text-earth-brown">
+                      Remember me
+                    </span>
+                  </label>
+                  <Link
+                    to="/forgot-password"
+                    className="font-lato text-xs sm:text-sm text-sunset-orange hover:underline"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  disabled={loading}
+                >
+                  {loading ? 'Signing in...' : 'Sign In'}
+                </Button>
+              </form>
+
+              <div className="mt-6 text-center">
+                <p className="font-lato text-earth-brown text-sm sm:text-base">
+                  Don't have an account?{' '}
+                  <Link
+                    to="/register"
+                    className="text-sunset-orange hover:underline font-semibold"
+                  >
+                    Sign up
+                  </Link>
+                </p>
+              </div>
             </div>
-
-            <Button
-              type="submit"
-              variant="primary"
-              size="lg"
-              className="w-full"
-              disabled={loading}
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center">
-            <p className="font-lato text-earth-brown text-sm sm:text-base">
-              Don't have an account?{' '}
-              <Link
-                to="/register"
-                className="text-sunset-orange hover:underline font-semibold"
-              >
-                Sign up
-              </Link>
-            </p>
-          </div>
-        </div>
           </motion.div>
 
           {/* Benefits Section */}

@@ -24,7 +24,7 @@ const Shop = () => {
   useEffect(() => {
     const categoryParam = searchParams.get('category');
     const searchParam = searchParams.get('search');
-    
+
     if (categoryParam) {
       setSelectedCategory(categoryParam);
     }
@@ -63,22 +63,22 @@ const Shop = () => {
   };
 
   return (
-    <div className="min-h-screen bg-mountain-gray py-12 sm:py-16">
+    <div className="min-h-screen bg-mountain-gray py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-10"
         >
-          <h1 className="font-nunito font-extrabold text-3xl sm:text-4xl md:text-5xl text-forest-green mb-4">
+          <h1 className="font-nunito font-extrabold text-2xl sm:text-3xl md:text-4xl text-forest-green mb-4">
             SHOP <span className="text-sunset-orange">ALL PRODUCTS</span>
           </h1>
-          <p className="font-lato text-base sm:text-lg text-earth-brown mb-2">
+          <p className="font-lato text-sm sm:text-base text-earth-brown mb-2">
             {filteredProducts.length} products found
           </p>
-          <p className="font-lato text-sm sm:text-base text-earth-brown max-w-3xl mx-auto">
-            Discover our complete collection of premium sports equipment. Use filters to find exactly what you're looking for, 
+          <p className="font-lato text-xs sm:text-sm text-earth-brown max-w-3xl mx-auto">
+            Discover our complete collection of premium sports equipment. Use filters to find exactly what you're looking for,
             or browse by category to explore our wide selection of quality products.
           </p>
         </motion.div>
@@ -114,17 +114,16 @@ const Shop = () => {
           </motion.button>
         </div>
 
-        {/* Quick Category Links */}
-        <div className="mb-8 flex flex-wrap justify-center gap-3 sm:gap-4">
+        {/* Quick Category Links - Sticky below Navbar */}
+        <div className="sticky top-20 z-30 bg-mountain-gray/95 backdrop-blur-md py-4 mb-8 flex flex-wrap justify-center gap-3 sm:gap-4 shadow-md -mx-4 px-4 border-b border-earth-brown/5">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => handleCategoryChange(category)}
-              className={`px-4 py-2 rounded-md font-lato font-semibold text-sm sm:text-base transition-colors ${
-                selectedCategory === category
-                  ? 'bg-sunset-orange text-white'
-                  : 'bg-white text-forest-green hover:bg-mountain-gray'
-              }`}
+              className={`px-5 py-2.5 rounded-full font-nunito font-bold text-sm sm:text-base transition-all duration-300 shadow-sm ${selectedCategory === category
+                ? 'bg-sunset-orange text-white scale-105 ring-2 ring-sunset-orange/20 shadow-orange-500/20'
+                : 'bg-white text-forest-green hover:bg-sunset-orange/5 border border-forest-green/10'
+                }`}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
@@ -246,7 +245,7 @@ const Shop = () => {
               <div className="text-4xl mb-3">🔍</div>
               <h3 className="font-nunito font-extrabold text-lg text-forest-green mb-2">Find Products</h3>
               <p className="font-lato text-sm sm:text-base text-earth-brown">
-                Use our search bar or category filters to quickly find the products you need. 
+                Use our search bar or category filters to quickly find the products you need.
                 Filter by price range to stay within your budget.
               </p>
             </div>
@@ -254,7 +253,7 @@ const Shop = () => {
               <div className="text-4xl mb-3">⭐</div>
               <h3 className="font-nunito font-extrabold text-lg text-forest-green mb-2">Compare & Review</h3>
               <p className="font-lato text-sm sm:text-base text-earth-brown">
-                Read product descriptions, check ratings, and compare features. 
+                Read product descriptions, check ratings, and compare features.
                 Add items to your wishlist to save them for later.
               </p>
             </div>
@@ -262,7 +261,7 @@ const Shop = () => {
               <div className="text-4xl mb-3">🛒</div>
               <h3 className="font-nunito font-extrabold text-lg text-forest-green mb-2">Easy Checkout</h3>
               <p className="font-lato text-sm sm:text-base text-earth-brown">
-                Add products to your cart and checkout securely. 
+                Add products to your cart and checkout securely.
                 Enjoy free shipping on orders over $50 and easy returns.
               </p>
             </div>

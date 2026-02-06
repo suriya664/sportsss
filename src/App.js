@@ -31,7 +31,7 @@ import NotFound from './pages/NotFound';
 const initializeAdmin = () => {
   const users = JSON.parse(localStorage.getItem('sportsUsers') || '[]');
   const adminExists = users.find((u) => u.role === 'admin');
-  
+
   if (!adminExists) {
     const adminUser = {
       id: 'admin-1',
@@ -81,46 +81,67 @@ function AppContent() {
   }, [location, navigate]);
 
   return (
-            <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       {!isDashboard && !isAuthPage && <Navbar />}
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<Home />} />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/home2" element={<Home2 />} />
-                  <Route path="/shop" element={<Shop />} />
-                  <Route path="/product/:id" element={<ProductDetails />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/wishlist" element={<Wishlist />} />
-                  <Route path="/checkout" element={<Checkout />} />
-                  <Route path="/checkout/success" element={<CheckoutSuccess />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route
-                    path="/account"
-                    element={
-                      <ProtectedRoute>
-                        <Account />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/admin"
-                    element={
-                      <ProtectedRoute requireAdmin={true}>
-                        <Admin />
-                      </ProtectedRoute>
-                    }
-                  />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/staff-dashboard" element={<StaffDashboard />} />
-          <Route path="/user-dashboard" element={<UserDashboard />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requireAdmin={true}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute requireAdmin={true}>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/staff-dashboard"
+            element={
+              <ProtectedRoute requireStaff={true}>
+                <StaffDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user-dashboard"
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       {!isDashboard && !isAuthPage && <Footer />}
-            </div>
+    </div>
   );
 }
 
