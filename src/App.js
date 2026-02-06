@@ -20,7 +20,6 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Account from './pages/Account';
-import Admin from './pages/Admin';
 import AdminDashboard from './pages/AdminDashboard';
 import StaffDashboard from './pages/StaffDashboard';
 import UserDashboard from './pages/UserDashboard';
